@@ -6,14 +6,23 @@ The **Finance Dashboard Backend** is a Spring Boot application designed to manag
 
 ---
 
+## 🌐 Live Deployment
+This project is deployed on Render with Neon PostgreSQL as the database.
+
+Live URL:  
+👉 https://finance-dashboard-backend-09nx.onrender.com
+
+---
+
 ## 🛠 Tech Stack
 
 * **Java**
 * **Spring Boot**
 * **Spring Data JPA**
-* **MySQL** (persistent database)
+* **PostgreSQL** (persistent database, hosted on Neon)
 * **Maven**
 * **AI Tool**
+* **Render** (deployment platform)
 
 ---
 
@@ -77,15 +86,16 @@ The **Finance Dashboard Backend** is a Spring Boot application designed to manag
    cd Finance-Dashboard-Backend
    ```
 
-3. Configure MySQL in `application.properties`:
+3. Configure PostgreSQL in `application.properties`:
 
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/finance_db
-   spring.datasource.username=root
+   spring.datasource.url=jdbc:postgresql://localhost:5432/finance_db?sslmode=require
+   spring.datasource.username=your_username
    spring.datasource.password=your_password
+
    ```
 
-4. Make sure MySQL is running and create database:
+4. Make sure PostgreSQL is running and create database:
 
    ```sql
    CREATE DATABASE finance_db;
@@ -119,7 +129,7 @@ Role: ADMIN / ANALYST / VIEWER
 
 ## 🗄 Database
 
-* **MySQL database (persistent storage)**
+* **PostgreSQL database (persistent storage via Neon)**
 * Tables are automatically created using JPA
 
 ---
@@ -128,7 +138,7 @@ Role: ADMIN / ANALYST / VIEWER
 
 * Role is passed via request header
 * No authentication implemented
-* MySQL is used for persistent storage
+* PostgreSQL is used for persistent storage
 
 ---
 
