@@ -1,14 +1,14 @@
-# Use an official JDK image to build the app
-FROM maven:3.9.6-eclipse-temurin-21 AS build
+# Build stage with Maven + JDK 25
+FROM maven:3.9.6-eclipse-temurin-25 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Use a lightweight JRE image to run the app
-FROM eclipse-temurin:21-jre
+# Runtime stage with JRE 25
+FROM eclipse-temurin:25-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
-# Render sets $PORT automatically, so expose it
+# Render sets $PORT automatically
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
